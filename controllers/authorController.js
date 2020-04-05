@@ -6,18 +6,17 @@ const { sanitizeBody } = require('express-validator/filter');
 
 
 // Display list of all Authors.
-exports.author_list = function(req, res, next) {
+exports.author_list = function (req, res, next) {
 
     Author.find()
-      .populate('author')
-      .sort([['family_name', 'ascending']])
-      .exec(function (err, list_authors) {
-        if (err) { return next(err); }
-        //Successful, so render
-        res.render('author_list', { title: 'Author List', author_list: list_authors });
-      });
-  
-  };
+        .sort([['family_name', 'ascending']])
+        .exec(function (err, list_authors) {
+            if (err) { return next(err); }
+            // Successful, so render.
+            res.render('author_list', { title: 'Author List', author_list: list_authors });
+        })
+
+};
 
 
 // Display detail page for a specific Author.
